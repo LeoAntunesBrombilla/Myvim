@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/home/leonardo/Desktop/Projetos/waterPlant/src/pages/login'
+let g:netrw_dirhist_4='/home/leonardo/Desktop/Projetos/waterPlant/src/pages'
+let g:netrw_dirhist_3='/home/leonardo/Desktop/Projetos/waterPlant/src'
+let g:netrw_dirhist_2='/home/leonardo/Desktop/Projetos/waterPlant/src/components'
+let g:netrw_dirhist_1='/home/leonardo/Desktop/Projetos/waterPlant/src'
+let g:netrw_dirhist_0='/home/leonardo/Desktop/Projetos/waterPlant/__tests__'
+let g:netrw_dirhist_9='/home/leonardo/Desktop/Projetos/waterPlant/src/store/auth/actions'
+let g:netrw_dirhist_8='/home/leonardo/Desktop/Projetos/waterPlant/src/store/auth'
+let g:netrw_dirhist_7='/home/leonardo/Desktop/Projetos/waterPlant/src/store'
+let g:netrw_dirhist_6='/home/leonardo/Desktop/Projetos/waterPlant/src'
