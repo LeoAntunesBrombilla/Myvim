@@ -16,7 +16,28 @@ vim.cmd([[
   augroup end
 ]])
 vim.cmd([[colorscheme gruvbox]])
+vim.g.mapleader = ' '
+vim.keymap.set('n', '<c-p>', ':Files<cr>')
+vim.keymap.set('n', '<Leader>n', ':NERDTreeFocus<CR>')
+vim.keymap.set('n', '<C-n>', ':NERDTree<CR>')
+vim.keymap.set('n', '<C-t>', ':NERDTreeToggle<CR>')
+vim.keymap.set('n', '<C-f>', ':NERDTreeFind<CR>')
+vim.keymap.set('n', '<Leader>ff', '<cmd>Telescope find_files<cr>')
+vim.keymap.set('n', '<Leader>fg', '<cmd>Telescope live_grep<cr>')
+vim.keymap.set('n', '<Leader>fb', '<cmd>Telescope buffers<cr>')
+vim.keymap.set('n', '<Leader>fh','<cmd>Telescope help_tags<cr>')
 
+vim.cmd 'let g:NERDTreeIgnore = ["^node_modules$"]'
+vim.cmd 'let g:neoformat_try_node_exe = 1'
+
+local on_attach = function(client, bufnr)
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+end
 -- call plug#begin() 
 
 -- Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -65,8 +86,7 @@ vim.cmd([[colorscheme gruvbox]])
 --     "\ }                         
 
 
--- let g:NERDTreeIgnore = ['^node_modules$']
-
+-- 
 -- colorscheme gruvbox 
 
 -- set t_8f=^[[38;2;%lu;%lu;%lum
@@ -95,7 +115,7 @@ vim.cmd([[colorscheme gruvbox]])
 
 
 -- let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
--- let mapleader="\<space>"
+
 
 -- " coc config
 -- let g:coc_global_extensions = [

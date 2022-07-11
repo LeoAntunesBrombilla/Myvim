@@ -8,7 +8,12 @@ return require('packer').startup(function()
       'nvim-telescope/telescope.nvim',
       requires = { {'nvim-lua/plenary.nvim'} }
   }
-  use 'kyazdani42/nvim-web-devicons'
+  use {
+  'kyazdani42/nvim-tree.lua',
+  requires = {
+    'kyazdani42/nvim-web-devicons', -- optional, for file icons
+  },
+  }
   use 'scrooloose/nerdtree'
   use 'scrooloose/nerdcommenter'
   use 'Xuyuanp/nerdtree-git-plugin'
@@ -29,5 +34,6 @@ return require('packer').startup(function()
   use "jose-elias-alvarez/null-ls.nvim"
   use "jose-elias-alvarez/nvim-lsp-ts-utils"
   use 'jiangmiao/auto-pairs'
+  use 'sbdchd/neoformat'
 end)
   
