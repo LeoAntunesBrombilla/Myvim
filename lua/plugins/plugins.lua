@@ -19,7 +19,10 @@ return require('packer').startup(function()
   use 'Xuyuanp/nerdtree-git-plugin'
   use 'tiagofumo/vim-nerdtree-syntax-highlight'
   use 'morhetz/gruvbox'
-  use 'neovim/nvim-lspconfig'
+  use {
+    "williamboman/nvim-lsp-installer",
+    "neovim/nvim-lspconfig",
+  }
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'

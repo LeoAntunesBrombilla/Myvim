@@ -26,9 +26,32 @@ vim.keymap.set('n', '<Leader>ff', '<cmd>Telescope find_files<cr>')
 vim.keymap.set('n', '<Leader>fg', '<cmd>Telescope live_grep<cr>')
 vim.keymap.set('n', '<Leader>fb', '<cmd>Telescope buffers<cr>')
 vim.keymap.set('n', '<Leader>fh','<cmd>Telescope help_tags<cr>')
+vim.cmd([[
+	function! AutoCpp()
+	  call append(0, '#include <iostream>')
+	  call append(1, '')
+	  call append(2, 'int main( int argc , char **argv ){')
+	  call append(3, "  std::cout << \"Olá, Mundo!\" << '\\n';")
+	  call append(4, '  return 0;')
+	  call append(5, '}')
+	  call cursor(4, 17)
+	endfunction
+	autocmd BufNewFile *.cpp :call AutoCpp()
+]])
 
 vim.cmd 'let g:NERDTreeIgnore = ["^node_modules$"]'
+
+-- Formating with neoformat
 vim.cmd 'let g:neoformat_try_node_exe = 1'
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  callback = function()
+    vim.cmd("Neoformat")
+  end,
+  group = autogroup_eslint_lsp,
+})
+
 
 local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -102,14 +125,9 @@ end
 -- set guifont=DroidSansMono\ Nerd\ Font\ 11
 
 -- " vim-prettier
--- "let g:prettier#quickfix_enabled = 0
--- "let g:prettier#quickfix_auto_focus = 0
 -- " prettier command for coc
 -- command! -nargs=0 Prettier :CocCommand prettier.formatFile
 -- " run prettier on save
--- "let g:prettier#autoformat = 0
--- "autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-
 -- " Exit Vim if NERDTree is the only window remaining in the only tab.
 -- autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
