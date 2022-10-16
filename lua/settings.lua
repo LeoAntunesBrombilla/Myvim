@@ -1,5 +1,6 @@
 vim.cmd([[set t_8f=^[[38;2;%lu;%lu;%lum]])
 vim.cmd([[set t_8b=^[[48;2;%lu;%lu;%lum]])
+vim.cmd([[set cmdheight=2]])
 vim.cmd([[set termguicolors]])
 vim.cmd([[set hidden]])
 vim.cmd([[set number]])
@@ -26,6 +27,12 @@ vim.keymap.set('n', '<Leader>ff', '<cmd>Telescope find_files<cr>')
 vim.keymap.set('n', '<Leader>fg', '<cmd>Telescope live_grep<cr>')
 vim.keymap.set('n', '<Leader>fb', '<cmd>Telescope buffers<cr>')
 vim.keymap.set('n', '<Leader>fh','<cmd>Telescope help_tags<cr>')
+local bufopts = { noremap=true, silent=true, buffer=bufnr }
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
 vim.cmd([[
 	function! AutoCpp()
 	  call append(0, '#include <iostream>')
@@ -52,15 +59,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = autogroup_eslint_lsp,
 })
 
+vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
 
-local on_attach = function(client, bufnr)
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-end
+
 -- call plug#begin() 
 
 -- Plug 'neoclide/coc.nvim', {'branch': 'release'}

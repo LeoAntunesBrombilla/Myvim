@@ -38,5 +38,6 @@ return require('packer').startup(function()
   use "jose-elias-alvarez/nvim-lsp-ts-utils"
   use 'jiangmiao/auto-pairs'
   use 'sbdchd/neoformat'
+  use "lukas-reineke/lsp-format.nvim"
 end)
   
