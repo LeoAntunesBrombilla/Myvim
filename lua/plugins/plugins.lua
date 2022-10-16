@@ -39,5 +39,17 @@ return require('packer').startup(function()
   use 'jiangmiao/auto-pairs'
   use 'sbdchd/neoformat'
   use "lukas-reineke/lsp-format.nvim"
+  use "f-person/git-blame.nvim"
+  use({
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+    config = function()
+        local saga = require("lspsaga")
+
+        saga.init_lsp_saga({
+            -- your configuration
+        })
+    end,
+})
 end)
   

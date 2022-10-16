@@ -6,8 +6,19 @@ local has_any_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+local prettier = {
+  formatCommand = [[prettier --stdin-filepath ${INPUT} ${--tab-width:tab_width}]],
+  formatStdin = true,
+}
+
 require("lsp-format").setup {}
-require("nvim-lsp-installer").setup {}
+require("nvim-lsp-installer").setup {
+  settings = {
+  languages = {
+      typescript = { prettier , { tab_width = 2 }},
+      javascript = {prettier}, 
+  },
+},}
 require'lspconfig'.tsserver.setup { on_attach = require("lsp-format").on_attach }
 -- require'lspconfig'.clangd.setup{}
 require "lsp_signature".setup()

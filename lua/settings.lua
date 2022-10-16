@@ -10,6 +10,7 @@ vim.cmd([[set inccommand=split]])
 vim.cmd([[set completeopt=menuone,noinsert,noselect]])
 vim.cmd([[set encoding=UTF-8]])
 vim.cmd([[set guifont=Nerd\ Font\ 11]])
+vim.cmd([[set autoindent expandtab tabstop=2 shiftwidth=2]])
 vim.cmd([[
   augroup packer_user_config
     autocmd!
@@ -59,7 +60,15 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = autogroup_eslint_lsp,
 })
 
-vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
+vim.cmd [[cabbrev w execute "Format sync" <bar> w]]
+
+vim.diagnostic.config({
+  virtual_text = false
+})
+
+-- Show line diagnostics automatically in hover window
+vim.o.updatetime = 250
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 
 
 
